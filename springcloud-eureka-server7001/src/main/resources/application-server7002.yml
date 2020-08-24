@@ -1,0 +1,21 @@
+server:
+  port: 7002
+
+spring:
+  application:
+    name: springcloud-eureka-service
+eureka:
+  instance:
+    hostname: eureka7002.com #eureka服务端实例名称，如果是一台机器上模拟做伪集群（本案例），则需要配置hosts
+    #prefer-ip-address: true  #显示ip地址，eureka server集群最好别配置为true，配置后所有实例都变成unavailable-replicas了，如果为true，defaultZone得改为用ip
+    instance-id: eureka7002 #配置这个注册中心微服务的这个实例的id
+  client:
+    register-with-eureka: true #false表示不往eureka上面注册自己
+    fetch-registry: false #false表示eureka不需要去拉取其它微服务，仅作为注册中心使用
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/, http://eureka7003.com:7003/eureka/    #设置eureka服务器地址，其它服务注册要用到
+
+#  ##下面两个配置仅仅做测试使用
+#  server:
+#    enable-self-preservation: false   #关闭自我保护，默认开启
+#    eviction-interval-timer-in-ms: 2000     #eureka service每隔2s清理一次无用节点，默认60s

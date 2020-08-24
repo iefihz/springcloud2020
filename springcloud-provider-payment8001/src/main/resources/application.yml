@@ -1,0 +1,4 @@
+spring:
+  profiles:
+    active: replicas8001
+#    active: replicas8002

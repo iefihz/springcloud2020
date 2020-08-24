@@ -1,0 +1,4 @@
+spring:
+  profiles:
+#    active: hystrix8001
+    active: hystrix8002

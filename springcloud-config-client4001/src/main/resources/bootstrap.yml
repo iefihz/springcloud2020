@@ -1,0 +1,31 @@
+server:
+  port: 4001
+spring:
+  application:
+    name: springcloud-config-client4001
+  cloud:
+    config:
+      label: master
+      name: config
+      profile: dev
+      uri: http://localhost:3001
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/, http://eureka7002.com:7002/eureka/, http://eureka7003.com:7003/eureka/
+  instance:
+    instance-id: config-client4001
+    prefer-ip-address: true
+
+#############配置手动刷新配置###############
+# 1. 添加actuator依赖
+# 2. 暴露刷新接口
+# 3. 在需要手动刷新的类使用@RefreshScope
+# 4. 修改配置后发送post请求：curl -X POST http://localhost:4001/actuator/refresh
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

@@ -1,0 +1,40 @@
+server:
+  port: 5555
+spring:
+  application:
+    name: springcloud-config-server5555-bus
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/iefihz/springcloud-config-server3001.git
+      label: master
+  rabbitmq:
+    host: 192.168.199.128
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/, http://eureka7002.com:7002/eureka/, http://eureka7003.com:7003/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: config-server5555-bus
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+
+#############配置手动批量刷新配置###############
+# 1. 添加actuator依赖、bus-amqp依赖（config client和server端都要）
+# 2. 暴露刷新接口（config client和server端都要）
+# 3. 配置rabbitmq（config client和server端都要）
+# 4. 在需要手动刷新的类使用@RefreshScope（config server端不用）
+# 5. 修改配置后发送post请求：curl -X POST http://localhost:5555/actuator/bus-refresh[/springcloud-config-client5002-bus[:5002]]
+#     通过手动通知server端，server端广播到各个订阅了的client端，[]包裹住的是可选项，指定只刷新某个微服务集群的哪个端口的机器

@@ -1,0 +1,5 @@
+spring:
+  profiles:
+#    active: server7001      #通过不同的配置来启动集群
+#    active: server7002
+    active: server7003
