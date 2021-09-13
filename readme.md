@@ -54,6 +54,10 @@ _下面2个子模块均是注册到zookeeper server：_
 
 **21. springcloud-seata-storage2002**: 模拟生产者，整合seata处理分布式事务问题
 
+**22. springcloud-consumer-order80-nacos**: 使用nacos做注册中心+配置中心+sentinel（消费者）
+
+**23. springcloud-provider-payment8300-nacos**: 使用nacos做注册中心+配置中心+sentinel（生产者）
+
 
 **注意：**
 1. 在idea上运行集群（通过指定不同配置文件的集群），需要在配置启动类中，allow parallel run

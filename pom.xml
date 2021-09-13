@@ -29,6 +29,8 @@
       <module>springcloud-config-client5002-bus</module>
     <module>springcloud-seata-order2001</module>
     <module>springcloud-seata-storage2002</module>
+    <module>springcloud-consumer-order80-nacos</module>
+    <module>springcloud-provider-payment8300-nacos</module>
   </modules>
   <packaging>pom</packaging>
 
